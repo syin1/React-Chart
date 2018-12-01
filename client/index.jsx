@@ -6,14 +6,14 @@ import store from './stores/store';
 import AppContainer from './containers/AppContainer';
 
 injectGlobal`
-  @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+  @import url('https://fonts.googleapis.com/css?family=Lato');
 
   html {
-    background-color: #30364a;
+    background-color: coral;
   }
   body {
     margin: 0;
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'Lato', monospace;
   }
 `;
 
@@ -21,6 +21,5 @@ ReactDOM.render(
   <Provider store={store}>
     <AppContainer />
   </Provider>,
-  document.getElementById('app'),
+  document.getElementById('app')
 );
-

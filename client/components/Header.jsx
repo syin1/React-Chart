@@ -64,17 +64,9 @@ const Icon = styled.img`
 
 const Header = () => (
   <Wrapper>
-    <Title>CryptoCharts</Title>
+    <Title>Crypto Dashboard</Title>
     <ControlsContainer />
-    <RightLinks>
-      <Link href="https://github.com/seungprk/crypto-charts" target="_blank" rel="noopener noreferrer">
-        <LinkText>Github Source</LinkText>
-        <Icon src={githubIcon} alt="github icon" />
-      </Link>
-      <AttribLink href="https://www.cryptocompare.com/" target="_blank" rel="noopener noreferrer">Data from CryptoCompare</AttribLink>
-    </RightLinks>
   </Wrapper>
 );
 
 export default Header;
-

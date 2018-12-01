@@ -5,11 +5,12 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
+    "server": "node server.js",
     "docker": "npm run build:prod && node server.js",
     "start:dev": "npm run build & node server.js",
     "build": "webpack --mode development --watch",
-    "build:prod": "webpack --mode production"
+    "build:prod": "webpack --mode production",
+    "start": "npm run build & npm run server"
   },
   "author": "",
   "license": "ISC",

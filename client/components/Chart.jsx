@@ -39,47 +39,53 @@ class Chart extends React.Component {
       type: 'line',
       data: {
         labels: [],
-        datasets: [{
-          label: this.props.symbol,
-          data: [],
-          type: 'line',
-          pointRadius: 0,
-          fill: false,
-          lineTension: 0,
-          borderWidth: 2,
-          borderColor: '#5886af',
-        }],
+        datasets: [
+          {
+            label: this.props.symbol,
+            data: [],
+            type: 'line',
+            pointRadius: 0,
+            fill: false,
+            lineTension: 0,
+            borderWidth: 2,
+            borderColor: '#5886af'
+          }
+        ]
       },
       options: {
         legend: {
-          display: false,
+          display: false
         },
         tooltips: {
           mode: 'index',
           intersect: false,
           displayColors: false,
           callbacks: {
-            label: tooltipItem => `$${tooltipItem.yLabel.toLocaleString()}`,
-          },
+            label: tooltipItem => `$${tooltipItem.yLabel.toLocaleString()}`
+          }
         },
         scales: {
-          xAxes: [{
-            distribution: 'series',
-            ticks: {
-              source: 'labels',
-            },
-          }],
-          yAxes: [{
-            scaleLabel: {
-              display: true,
-              labelString: 'Closing price ($)',
-            },
-            ticks: {
-              callback: value => `$${value.toLocaleString()}`,
-            },
-          }],
-        },
-      },
+          xAxes: [
+            {
+              distribution: 'series',
+              ticks: {
+                source: 'labels'
+              }
+            }
+          ],
+          yAxes: [
+            {
+              scaleLabel: {
+                display: true,
+                labelString: 'Closing price ($)'
+              },
+              ticks: {
+                callback: value => `$${value.toLocaleString()}`
+              }
+            }
+          ]
+        }
+      }
     });
 
     this.updateChart();
@@ -92,8 +98,9 @@ class Chart extends React.Component {
   updateChart() {
     const dates = [];
     const prices = [];
-    this.props.chartData.forEach((item) => {
-      const dateStr = `${item.date.getMonth() + 1}/${item.date.getDate()}/${item.date.getFullYear()}`;
+    this.props.chartData.forEach(item => {
+      const dateStr = `${item.date.getMonth() +
+        1}/${item.date.getDate()}/${item.date.getFullYear()}`;
       dates.push(dateStr);
       prices.push(item.price);
     });
@@ -106,7 +113,10 @@ class Chart extends React.Component {
   render() {
     return (
       <Card>
-        <ChartControls title={`${this.props.name} (${this.props.symbol})`} symbol={this.props.symbol} />
+        <ChartControls
+          title={`${this.props.name} (${this.props.symbol})`}
+          symbol={this.props.symbol}
+        />
         <canvas ref={this.canvas} />
       </Card>
     );
@@ -116,11 +126,12 @@ class Chart extends React.Component {
 Chart.propTypes = {
   symbol: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  chartData: PropTypes.arrayOf(PropTypes.shape({
-    date: PropTypes.instanceOf(Date),
-    price: PropTypes.number,
-  })).isRequired,
+  chartData: PropTypes.arrayOf(
+    PropTypes.shape({
+      date: PropTypes.instanceOf(Date),
+      price: PropTypes.number
+    })
+  ).isRequired
 };
 
 export default Chart;
-

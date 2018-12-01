@@ -2,21 +2,22 @@ const express = require('express');
 const fetch = require('node-fetch');
 
 const app = express();
+const PORT = process.env.PORT || 8080;
 
 app.use(express.static('public'));
 
 fetch('https://min-api.cryptocompare.com/data/all/coinlist')
-  .catch((error) => {
+  .catch(error => {
     console.log('Failed to fetch coin list...');
     console.error(error);
   })
   .then(res => res.json())
-  .then((resJson) => {
-    const coinList = Object.keys(resJson.Data).map((key) => {
+  .then(resJson => {
+    const coinList = Object.keys(resJson.Data).map(key => {
       const coin = resJson.Data[key];
       return {
         name: coin.CoinName,
-        symbol: coin.Symbol,
+        symbol: coin.Symbol
       };
     });
 
@@ -24,6 +25,5 @@ fetch('https://min-api.cryptocompare.com/data/all/coinlist')
       res.send(coinList);
     });
 
-    app.listen(3000, () => console.log('Listening on port 3000...'));
+    app.listen(PORT, () => console.log(`Listening on port ${PORT}...`));
   });
-
